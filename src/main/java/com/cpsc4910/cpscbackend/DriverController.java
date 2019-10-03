@@ -21,8 +21,6 @@ public class DriverController {
         driverRepository.save(d);
 
         return "Saved";
-
-
     }
 
     @GetMapping(path="/alldrivers")
