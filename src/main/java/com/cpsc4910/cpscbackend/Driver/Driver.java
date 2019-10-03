@@ -1,4 +1,4 @@
-package com.cpsc4910.cpscbackend;
+package com.cpsc4910.cpscbackend.Driver;
 
 
 import javax.persistence.Entity;
@@ -11,11 +11,15 @@ public class Driver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private long driverID;
 
     private String firstname;
 
     private String lastname;
+
+    private String password;
 
     public long getDriverID() {
         return driverID;
@@ -23,6 +27,22 @@ public class Driver {
 
     public void setDriverID(long driverID) {
         this.driverID = driverID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public long getID() {
+        return id;
+    }
+
+    public void setID(long id) {
+        this.id = id;
     }
 
     public String getFirstname() {
