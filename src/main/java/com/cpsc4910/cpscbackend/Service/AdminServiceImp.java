@@ -2,7 +2,9 @@ package com.cpsc4910.cpscbackend.Service;
 
 import com.cpsc4910.cpscbackend.Admin.Admin;
 import com.cpsc4910.cpscbackend.Admin.AdminRepository;
+import com.cpsc4910.cpscbackend.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,5 +29,14 @@ public class AdminServiceImp implements AdminService {
         adminRepository.save(a);
 
         return "Admin " + firstname + " has been registered!";
+    }
+
+    public ResponseEntity<?> deleteAdmin(long id){
+        Admin a = adminRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
+
+        adminRepository.delete(a);
+
+        return ResponseEntity.ok().build();
     }
 }

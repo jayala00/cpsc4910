@@ -20,11 +20,16 @@ public class AdminController {
         this.aservice = aservice;
     }
 
-    @PostMapping("/addadmin")
+    @PostMapping(path="/addadmin")
     public ResponseEntity<String> addNewAdmin(@Valid @RequestBody Admin request) {
 
         String response = aservice.addAdmin(request.getAdminID(), request.getFirstname(), request.getLastname(), request.getEmail(), request.getPassword());
 
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping(path="/deleteadmin/{id}")
+    public ResponseEntity<?> deleteAdmin(@PathVariable(value = "id") long id){
+        return aservice.deleteAdmin(id);
     }
 }
