@@ -1,23 +1,30 @@
 package com.cpsc4910.cpscbackend.Admin;
 
+import com.cpsc4910.cpscbackend.Service.AdminServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(path="/admin")
 public class AdminController {
+
+    private final AdminServiceImp aservice;
+
     @Autowired
-    private AdminRepository adminRepository;
+    public AdminController(AdminServiceImp aservice) {
+        this.aservice = aservice;
+    }
 
     @PostMapping("/addadmin")
-    public @ResponseBody String addNewAdmin(@RequestParam String id, @RequestParam String firstname, @RequestParam String lastname) {
-        Admin admin = new Admin();
-        admin.setAdminID(id);
-        admin.setFirstname(firstname);
-        admin.setLastname(lastname);
-        adminRepository.save(admin);
+    public ResponseEntity<String> addNewAdmin(@Valid @RequestBody Admin request) {
 
-        return "Saved";
+        String response = aservice.addAdmin(request.getAdminID(), request.getFirstname(), request.getLastname(), request.getEmail(), request.getPassword());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

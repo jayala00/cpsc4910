@@ -10,6 +10,7 @@ public class Account{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     private String username;
     private String password;
