@@ -1,4 +1,4 @@
-package com.cpsc4910.cpscbackend;
+package com.cpsc4910.cpscbackend.Account;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

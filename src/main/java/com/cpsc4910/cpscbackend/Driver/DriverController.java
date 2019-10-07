@@ -11,57 +11,69 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping(path="/driver")
+@RequestMapping(path = "/driver")
 public class DriverController {
 
     private final DriverServiceImp dservice;
 
     @Autowired
     public DriverController(DriverServiceImp dservice) {
+
         this.dservice = dservice;
     }
 
-    @PostMapping(path="/adddrivers")
-    public ResponseEntity<?> addNewDriver  (@Valid @RequestBody Driver request ) {
+    @PostMapping(path = "/adddrivers")
+    public ResponseEntity<String> addNewDriver(@Valid @RequestBody Driver request) {
 
-       String response = dservice.addDriver(request.getID(), request.getDriverID(), request.getFirstname(), request.getLastname(), request.getPassword());
+        String response = dservice.addDriver(request.getID(), request.getDriverID(), request.getFirstname(), request.getLastname(), request.getPassword());
 
-       return new ResponseEntity<>(response, HttpStatus.OK);
-
-
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    /*
-    @GetMapping(path="/alldrivers")
-    public Iterable<Driver> getAllDrivers() {
-        return driverRepository.findAll();
+    @PostMapping(path = "/changepassword/{id}")
+    public ResponseEntity<String> changeDriverPassword(@PathVariable(value = "id") long id, @Valid @RequestBody Driver request) {
+
+        String response = dservice.changePassword(request.getPassword(), id);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping(path="/find/{id}")
-    public Driver getDriverById(@PathVariable(value = "id") long id ){
-        return driverRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("Driver", "id", id));
+    @PostMapping(path = "/changeemail/{id}")
+    public ResponseEntity<String> changeDriverEmail(@PathVariable(value = "id") long id, @Valid @RequestBody Driver request) {
 
-    }*/
+        String response = dservice.changeEmail(request.getEmail(), id);
 
-    @PostMapping(path="/changepassword/{id}")
-    public ResponseEntity<?> changeDriverPassword(@PathVariable(value="id") long id, @Valid @RequestBody DeleteDriverPassword request){
-
-        String response = dservice.changePassword(request.getChangePassword(), id);
-
-        return new ResponseEntity<>(response , HttpStatus.OK);
-
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    /*@DeleteMapping(path="/deletedriver/{id}")
+    @GetMapping(path = "/getdriver/{id}")
+    public ResponseEntity<Driver> getDriverById(@PathVariable(value = "id") long id) {
+
+        return new ResponseEntity<>(dservice.getADriver(id),HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/getPassword/{id}")
+    public ResponseEntity<String> getDriverPassword(@PathVariable(value = "id") long id){
+
+        return new ResponseEntity<>(dservice.getPassword(id), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/getEmail/{id}")
+    public ResponseEntity<String> getDriverEmail(@PathVariable(value = "id") long id){
+
+        return new ResponseEntity<>(dservice.getEmail(id), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/getalldrivers")
+    public ResponseEntity<Iterable<Driver>> getDrivers(){
+        return new ResponseEntity<>(dservice.getAllDrivers(), HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/deletedriver/{id}")
     public ResponseEntity<?> deleteDriver(@PathVariable(value = "id") long id) {
-        Driver d = driverRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("Driver", "id", id));
+        return dservice.deleteDriver(id);
+    }
 
-        driverRepository.delete(d);
 
-        return ResponseEntity.ok().build();
-
-    }*/
 
 }

@@ -15,11 +15,25 @@ public class Driver {
 
     private long driverID;
 
+    private String email;
+
     private String firstname;
 
     private String lastname;
 
     private String password;
+
+
+    public Driver() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public long getDriverID() {
         return driverID;

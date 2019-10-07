@@ -1,4 +1,4 @@
-package com.cpsc4910.cpscbackend;
+package com.cpsc4910.cpscbackend.Admin;
 
 public class Admin {
     private String firstname;
