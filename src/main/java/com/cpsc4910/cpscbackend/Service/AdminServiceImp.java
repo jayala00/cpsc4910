@@ -39,4 +39,40 @@ public class AdminServiceImp implements AdminService {
 
         return ResponseEntity.ok().build();
     }
+
+    public String getEmail(long id){
+        Admin a = adminRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
+
+        return a.getEmail();
+    }
+
+    public String getPassword(long id){
+        Admin a = adminRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
+
+        return a.getPassword();
+    }
+
+    public String changePassword(long id, String newpassword){
+        Admin a = adminRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
+
+        a.setPassword(newpassword);
+
+        adminRepository.save(a);
+
+        return "Password Successfully Changed";
+    }
+
+    public String changeEmail(long id, String newemail){
+        Admin a = adminRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
+
+        a.setEmail(newemail);
+
+        adminRepository.save(a);
+
+        return "Email Successfully Changed";
+    }
 }

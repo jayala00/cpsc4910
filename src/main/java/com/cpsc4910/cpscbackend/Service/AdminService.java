@@ -9,4 +9,12 @@ public interface AdminService {
     String addAdmin(long id, String firstname, String lastname, String email, String password);
 
     ResponseEntity<?> deleteAdmin(long id);
+
+    String getEmail(long id);
+
+    String getPassword(long id);
+
+    String changePassword(long id, String newpassword);
+
+    String changeEmail(long id, String newemail);
 }
