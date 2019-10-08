@@ -52,13 +52,13 @@ public class DriverController {
         return new ResponseEntity<>(dservice.getADriver(id),HttpStatus.OK);
     }
 
-    @GetMapping(path = "/getPassword/{id}")
+    @GetMapping(path = "/getpassword/{id}")
     public ResponseEntity<String> getDriverPassword(@PathVariable(value = "id") long id){
 
         return new ResponseEntity<>(dservice.getPassword(id), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/getEmail/{id}")
+    @GetMapping(path = "/getemail/{id}")
     public ResponseEntity<String> getDriverEmail(@PathVariable(value = "id") long id){
 
         return new ResponseEntity<>(dservice.getEmail(id), HttpStatus.OK);

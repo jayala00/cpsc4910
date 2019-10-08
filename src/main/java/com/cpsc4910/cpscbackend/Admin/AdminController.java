@@ -28,6 +28,30 @@ public class AdminController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping(path = "/changepassword/{id}")
+    public ResponseEntity<String> changeAdminPassword(@PathVariable(value = "id") long id, @Valid @RequestBody Admin request){
+
+        return new ResponseEntity<>(aservice.changePassword(id, request.getPassword()), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/changeemail/{id}")
+    public ResponseEntity<String> changeAdminEmail(@PathVariable(value = "id") long id, @Valid @RequestBody Admin request){
+
+        return new ResponseEntity<>(aservice.changeEmail(id, request.getEmail()), HttpStatus.OK);
+    }
+
+    @GetMapping(path="/getpassword/{id}")
+    public ResponseEntity<String> getAdminPassword(@PathVariable(value = "id") long id){
+
+        return new ResponseEntity<>(aservice.getPassword(id), HttpStatus.OK);
+    }
+
+    @GetMapping(path="/getemail/{id}")
+    public ResponseEntity<String> getAdminEmail(@PathVariable(value = "id") long id){
+
+        return new ResponseEntity<>(aservice.getEmail(id), HttpStatus.OK);
+    }
+
     @DeleteMapping(path="/deleteadmin/{id}")
     public ResponseEntity<?> deleteAdmin(@PathVariable(value = "id") long id){
         return aservice.deleteAdmin(id);
