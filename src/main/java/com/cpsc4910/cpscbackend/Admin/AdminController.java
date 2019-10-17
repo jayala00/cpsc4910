@@ -52,6 +52,16 @@ public class AdminController {
         return new ResponseEntity<>(aservice.getEmail(id), HttpStatus.OK);
     }
 
+    @GetMapping(path="/gettotnumdrivers")
+    public ResponseEntity<String> getTotalNumDrivers(){
+        return new ResponseEntity<>(aservice.getTotalNumberDrivers(), HttpStatus.OK);
+    }
+
+    @GetMapping(path="/gettotnumsponsors")
+    public ResponseEntity<String> getTotalNumSponsors(){
+        return new ResponseEntity<>(aservice.getTotalNumberSponsors(), HttpStatus.OK);
+    }
+
     @DeleteMapping(path="/deleteadmin/{id}")
     public ResponseEntity<?> deleteAdmin(@PathVariable(value = "id") long id){
         return aservice.deleteAdmin(id);

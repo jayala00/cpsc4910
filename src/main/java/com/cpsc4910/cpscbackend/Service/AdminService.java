@@ -17,4 +17,8 @@ public interface AdminService {
     String changePassword(long id, String newpassword);
 
     String changeEmail(long id, String newemail);
+
+    String getTotalNumberDrivers();
+
+    String getTotalNumberSponsors();
 }

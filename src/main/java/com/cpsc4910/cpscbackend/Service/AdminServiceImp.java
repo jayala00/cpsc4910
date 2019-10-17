@@ -2,7 +2,9 @@ package com.cpsc4910.cpscbackend.Service;
 
 import com.cpsc4910.cpscbackend.Admin.Admin;
 import com.cpsc4910.cpscbackend.Admin.AdminRepository;
+import com.cpsc4910.cpscbackend.Driver.DriverRepository;
 import com.cpsc4910.cpscbackend.ResourceNotFoundException;
+import com.cpsc4910.cpscbackend.Sponsor.SponsorRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminServiceImp implements AdminService {
     private final AdminRepository adminRepository;
+    private final DriverRepository driverRepository;
+    private final SponsorRespository sponsorRespository;
 
     @Autowired
-    public AdminServiceImp(AdminRepository adminRepository) {
+    public AdminServiceImp(AdminRepository adminRepository, DriverRepository driverRepository, SponsorRespository sponsorRespository) {
         this.adminRepository = adminRepository;
+        this.driverRepository = driverRepository;
+        this.sponsorRespository = sponsorRespository;
     }
 
     public String addAdmin(long id, String firstname, String lastname, String email, String password){
@@ -75,4 +81,39 @@ public class AdminServiceImp implements AdminService {
 
         return "Email Successfully Changed";
     }
+
+    public String getTotalNumberDrivers(){
+        String answer;
+        long totalDrivers = driverRepository.count();
+
+        if (totalDrivers >= 0){
+            answer = "There are no drivers registered in the system";
+        }
+        if (totalDrivers == 1){
+            answer = "There is one driver registered in the system";
+        }
+        else {
+            answer = "There are " + totalDrivers + " drivers registered in the system";
+        }
+        return answer;
+    }
+
+    public String getTotalNumberSponsors(){
+        String answer;
+        long totalDrivers = sponsorRespository.count();
+
+        if (totalDrivers >= 0){
+            answer = "There are no drivers registered in the system";
+        }
+        if (totalDrivers == 1){
+            answer = "There is one driver registered in the system";
+        }
+        else {
+            answer = "There are " + totalDrivers + " drivers registered in the system";
+        }
+        return answer;
+    }
+
+
+
 }
