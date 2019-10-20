@@ -1,35 +1,41 @@
 package com.cpsc4910.cpscbackend.Sponsor;
 
 
+import com.cpsc4910.cpscbackend.Service.SponsorServiceImp;
+import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(path="/sponsor")
 public class SponsorController {
 
+    private final SponsorServiceImp sservice;
+
     @Autowired
-    private SponsorRespository sponsorRespository;
+    public SponsorController(SponsorServiceImp sservice) {
+        this.sservice = sservice;
+    }
 
     @PostMapping(path="/addsponsor")
-    public @ResponseBody String newSponsor (@RequestParam long id, @RequestParam String name, @RequestParam String address, @RequestParam String pass){
+    public ResponseEntity<String> addNewSponsor(@Valid @RequestBody Sponsor request){
+        String response = sservice.addSponsor(request.getSponsorID(), request.getName(), request.getAddress(), request.getPassword(), request.getEmail());
 
-        Sponsor sponsor = new Sponsor();
-        sponsor.setSponsorID(id);
-        sponsor.setName(name);
-        sponsor.setAddress(address);
-        sponsor.setPassword(pass);
-        sponsorRespository.save(sponsor);
-
-        return "Saved";
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping(path="/allsponsors")
-    public @ResponseBody Iterable<Sponsor> getAllSponsors() {
-        return sponsorRespository.findAll();
+    @PostMapping(path="/changepassword/{id}")
+    public ResponseEntity<String> changeSponsorPassword(@PathVariable(value="id") long id, @Valid @RequestBody Sponsor request){
+        return new ResponseEntity<>(sservice.changePassword(id, request.getPassword()),HttpStatus.OK);
     }
 
-
-
+    @PostMapping(path="/changeemail/{id}")
+    public ResponseEntity<String> changeSponsorEmail(@PathVariable(value="id")long id, @Valid @RequestBody Sponsor request){
+        return new ResponseEntity<>(sservice.changeEmail(id , request.getEmail()), HttpStatus.OK);
+    }
 }

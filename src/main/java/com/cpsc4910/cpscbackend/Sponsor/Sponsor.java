@@ -10,11 +10,23 @@ public class Sponsor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private long sponsorID;
+
     private String name;
     private String password;
     private String address;
+    private String email;
+
+    public Sponsor() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getPassword() {
         return password;

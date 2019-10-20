@@ -32,7 +32,7 @@ public class DriverServiceImp implements DriverService {
 
     }
 
-    public String addDriver(long id, long driverID, String firstname, String lastname, String password) {
+    public String addDriver(long id, long driverID, String firstname, String lastname, String email, String address, String password) {
 
         Driver d = new Driver();
 
@@ -40,6 +40,8 @@ public class DriverServiceImp implements DriverService {
         d.setDriverID(driverID);
         d.setFirstname(firstname);
         d.setLastname(lastname);
+        d.setEmail(email);
+        d.setAddress(address);
         d.setPassword(password);
 
         driverRepository.save(d);
@@ -88,5 +90,16 @@ public class DriverServiceImp implements DriverService {
         driverRepository.save(d);
 
         return "Email Successfully Changed To " + newemail;
+    }
+
+    public String changeAddress(String newaddress, long id){
+        Driver d = driverRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Driver", "id", id));
+
+        d.setAddress(newaddress);
+
+        driverRepository.save(d);
+
+        return "Address Successfully Changed To " + newaddress;
     }
 }
