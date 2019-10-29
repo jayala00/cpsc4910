@@ -2,8 +2,10 @@ package com.cpsc4910.cpscbackend.Service;
 
 import com.cpsc4910.cpscbackend.Admin.Admin;
 import com.cpsc4910.cpscbackend.Admin.AdminRepository;
+import com.cpsc4910.cpscbackend.Driver.Driver;
 import com.cpsc4910.cpscbackend.Driver.DriverRepository;
 import com.cpsc4910.cpscbackend.ResourceNotFoundException;
+import com.cpsc4910.cpscbackend.Sponsor.Sponsor;
 import com.cpsc4910.cpscbackend.Sponsor.SponsorRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,11 +39,60 @@ public class AdminServiceImp implements AdminService {
         return "Admin " + firstname + " has been registered!";
     }
 
+    public String addDriver(long id, long driverID, String firstname, String lastname, String email, String address, String password) {
+
+        Driver d = new Driver();
+
+        d.setID(id);
+        d.setDriverID(driverID);
+        d.setFirstname(firstname);
+        d.setLastname(lastname);
+        d.setEmail(email);
+        d.setAddress(address);
+        d.setPassword(password);
+
+        driverRepository.save(d);
+
+        return "Driver " + firstname + " has been added!";
+    }
+
+    public String addSponsor(long id, String name, String address, String password, String email){
+
+        Sponsor sponsor = new Sponsor();
+
+        sponsor.setSponsorID(id);
+        sponsor.setName(name);
+        sponsor.setAddress(address);
+        sponsor.setPassword(password);
+        sponsor.setEmail(email);
+        sponsorRespository.save(sponsor);
+
+        return "Sponsor " + " has been successfully registered";
+    }
+
     public ResponseEntity<?> deleteAdmin(long id){
         Admin a = adminRepository.findById(id)
                     .orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
 
         adminRepository.delete(a);
+
+        return ResponseEntity.ok().build();
+    }
+
+    public ResponseEntity<?> deleteDriver(long id){
+        Driver d = driverRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Driver", "id", id));
+
+        driverRepository.delete(d);
+
+        return ResponseEntity.ok().build();
+    }
+
+    public ResponseEntity<?> deleteSponsor(long id){
+        Sponsor s = sponsorRespository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Driver", "id", id));
+
+        sponsorRespository.delete(s);
 
         return ResponseEntity.ok().build();
     }

@@ -10,6 +10,14 @@ public interface AdminService {
 
     ResponseEntity<?> deleteAdmin(long id);
 
+    String addDriver(long id, long driverID, String firstname, String lastname, String email, String address, String password);
+
+    ResponseEntity<?> deleteDriver(long id);
+
+    String addSponsor(long id, String name, String address, String password, String email);
+
+    ResponseEntity<?> deleteSponsor(long id);
+
     String getEmail(long id);
 
     String getPassword(long id);

@@ -1,6 +1,8 @@
 package com.cpsc4910.cpscbackend.Admin;
 
+import com.cpsc4910.cpscbackend.Driver.Driver;
 import com.cpsc4910.cpscbackend.Service.AdminServiceImp;
+import com.cpsc4910.cpscbackend.Sponsor.Sponsor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,21 @@ public class AdminController {
     public ResponseEntity<String> addNewAdmin(@Valid @RequestBody Admin request) {
 
         String response = aservice.addAdmin(request.getAdminID(), request.getFirstname(), request.getLastname(), request.getEmail(), request.getPassword());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping(path="/adddriver")
+    public ResponseEntity<String> addNewDriver(@Valid @RequestBody Driver request) {
+
+        String response = aservice.addDriver(request.getID(), request.getDriverID(), request.getFirstname(), request.getLastname(), request.getEmail(), request.getAddress(), request.getPassword());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping(path="/addsponsor")
+    public ResponseEntity<String> addNewSponsor(@Valid @RequestBody Sponsor request){
+        String response = aservice.addSponsor(request.getSponsorID(), request.getName(), request.getAddress(), request.getPassword(), request.getEmail());
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -65,5 +82,15 @@ public class AdminController {
     @DeleteMapping(path="/deleteadmin/{id}")
     public ResponseEntity<?> deleteAdmin(@PathVariable(value = "id") long id){
         return aservice.deleteAdmin(id);
+    }
+
+    @DeleteMapping(path="/deletedriver/{id}")
+    public ResponseEntity<?> deleteDriver(@PathVariable(value = "id") long id){
+        return aservice.deleteDriver(id);
+    }
+
+    @DeleteMapping(path="/deletesponsor/{id}")
+    public ResponseEntity<?> deleteSponsor(@PathVariable(value = "id") long id){
+        return aservice.deleteSponsor(id);
     }
 }
