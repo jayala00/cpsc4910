@@ -2,7 +2,6 @@ package com.cpsc4910.cpscbackend.Sponsor;
 
 
 import com.cpsc4910.cpscbackend.Service.SponsorServiceImp;
-import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +21,8 @@ public class SponsorController {
         this.sservice = sservice;
     }
 
+
+
     @PostMapping(path="/addsponsor")
     public ResponseEntity<String> addNewSponsor(@Valid @RequestBody Sponsor request){
         String response = sservice.addSponsor(request.getSponsorID(), request.getName(), request.getAddress(), request.getPassword(), request.getEmail());
@@ -38,4 +39,11 @@ public class SponsorController {
     public ResponseEntity<String> changeSponsorEmail(@PathVariable(value="id")long id, @Valid @RequestBody Sponsor request){
         return new ResponseEntity<>(sservice.changeEmail(id , request.getEmail()), HttpStatus.OK);
     }
+
+    @GetMapping(path="/getSponsor/{email}")
+    public ResponseEntity<Sponsor> getSponsorObject(@PathVariable(value="email") String email){
+        return new ResponseEntity<>(sservice.getSponsor(email), HttpStatus.OK);
+    }
+
+
 }

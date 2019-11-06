@@ -102,4 +102,8 @@ public class DriverServiceImp implements DriverService {
 
         return "Address Successfully Changed To " + newaddress;
     }
+
+    public Driver getDriver(String email){
+        return driverRepository.findByEmail(email);
+    }
 }

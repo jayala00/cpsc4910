@@ -26,5 +26,7 @@ public interface DriverService {
 
     String changeAddress(String newaddress, long id);
 
+    Driver getDriver(String email);
+
 
 }

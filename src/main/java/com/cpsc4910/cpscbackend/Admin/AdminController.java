@@ -79,6 +79,16 @@ public class AdminController {
         return new ResponseEntity<>(aservice.getTotalNumberSponsors(), HttpStatus.OK);
     }
 
+    @GetMapping(path="/adminexists/{email}")
+    public ResponseEntity<Boolean> checkIfAdminExists(@PathVariable(value = "email") String email){
+        return new ResponseEntity<>(aservice.checkIfUserExists(email), HttpStatus.OK);
+    }
+
+    @GetMapping(path="/getAdmin/{email}")
+    public ResponseEntity<Admin> getAdminObject(@PathVariable(value = "email") String email){
+        return new ResponseEntity<>(aservice.getAdmin(email), HttpStatus.OK);
+    }
+
     @DeleteMapping(path="/deleteadmin/{id}")
     public ResponseEntity<?> deleteAdmin(@PathVariable(value = "id") long id){
         return aservice.deleteAdmin(id);
@@ -93,4 +103,5 @@ public class AdminController {
     public ResponseEntity<?> deleteSponsor(@PathVariable(value = "id") long id){
         return aservice.deleteSponsor(id);
     }
+
 }

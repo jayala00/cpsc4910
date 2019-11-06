@@ -46,4 +46,8 @@ public class SponsorServiceImp implements SponsorService{
         sponsorRespository.save(s);
         return "Email Successfully Changed";
     }
+
+    public Sponsor getSponsor(String email){
+        return sponsorRespository.findByEmail(email);
+    }
 }

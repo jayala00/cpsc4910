@@ -165,6 +165,21 @@ public class AdminServiceImp implements AdminService {
         return answer;
     }
 
+    public Boolean checkIfUserExists(String email){
+        Admin a = adminRepository.findByEmail(email);
+        boolean check = false;
+        if ( a != null){
+            check = true;
+        }
 
+        return check;
+
+
+
+    }
+
+    public Admin getAdmin(String email){
+        return adminRepository.findByEmail(email);
+    }
 
 }

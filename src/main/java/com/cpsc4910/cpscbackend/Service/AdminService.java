@@ -1,5 +1,6 @@
 package com.cpsc4910.cpscbackend.Service;
 
+import com.cpsc4910.cpscbackend.Admin.Admin;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,10 @@ public interface AdminService {
     String getTotalNumberDrivers();
 
     String getTotalNumberSponsors();
+
+    Boolean checkIfUserExists(String email);
+
+    Admin getAdmin(String email);
 
 
 }
