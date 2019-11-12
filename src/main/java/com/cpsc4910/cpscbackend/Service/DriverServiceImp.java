@@ -32,11 +32,10 @@ public class DriverServiceImp implements DriverService {
 
     }
 
-    public String addDriver(long id, long driverID, String firstname, String lastname, String email, String address, String password) {
+    public String addDriver(long driverID, String firstname, String lastname, String email, String address, String password) {
 
         Driver d = new Driver();
 
-        d.setID(id);
         d.setDriverID(driverID);
         d.setFirstname(firstname);
         d.setLastname(lastname);

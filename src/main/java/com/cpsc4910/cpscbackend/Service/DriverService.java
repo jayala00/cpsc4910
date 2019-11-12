@@ -10,7 +10,7 @@ public interface DriverService {
 
     String changePassword(String newPassword, long id);
 
-    String addDriver(long id, long driverID, String firstname, String lastname, String email, String address, String password);
+    String addDriver(long driverID, String firstname, String lastname, String email, String address, String password);
 
     Driver getADriver(long id);
 

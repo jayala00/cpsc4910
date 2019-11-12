@@ -25,7 +25,7 @@ public class DriverController {
     @PostMapping(path = "/adddrivers")
     public ResponseEntity<String> addNewDriver(@Valid @RequestBody Driver request) {
 
-        String response = dservice.addDriver(request.getID(), request.getDriverID(), request.getFirstname(), request.getLastname(), request.getEmail(), request.getAddress(), request.getPassword());
+        String response = dservice.addDriver(request.getDriverID(), request.getFirstname(), request.getLastname(), request.getEmail(), request.getAddress(), request.getPassword());
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
