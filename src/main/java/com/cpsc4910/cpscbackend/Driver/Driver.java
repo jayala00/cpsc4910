@@ -25,12 +25,22 @@ public class Driver {
 
     private String address;
 
+    private String points;
+
 
     public Driver() {
     }
 
     public String getAddress() {
         return address;
+    }
+
+    public String getPoints() {
+        return points;
+    }
+
+    public void setPoints(String points) {
+        this.points = points;
     }
 
     public void setAddress(String address) {
