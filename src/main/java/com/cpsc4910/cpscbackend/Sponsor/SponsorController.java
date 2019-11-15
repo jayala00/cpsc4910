@@ -46,5 +46,9 @@ public class SponsorController {
         return new ResponseEntity<>(sservice.getSponsor(email), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/getallsponsors")
+    public ResponseEntity<Iterable<Sponsor>> getSponsors(){
+        return new ResponseEntity<>(sservice.getAllSponsors(), HttpStatus.OK);
+    }
 
 }

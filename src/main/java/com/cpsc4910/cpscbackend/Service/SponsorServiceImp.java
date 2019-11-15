@@ -50,4 +50,8 @@ public class SponsorServiceImp implements SponsorService{
     public Sponsor getSponsor(String email){
         return sponsorRespository.findByEmail(email);
     }
+
+    public Iterable<Sponsor> getAllSponsors(){
+        return  sponsorRespository.findAll();
+    }
 }

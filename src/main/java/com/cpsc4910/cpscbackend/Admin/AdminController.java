@@ -90,6 +90,11 @@ public class AdminController {
         return new ResponseEntity<>(aservice.getAdmin(email), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/getalladmin")
+    public ResponseEntity<Iterable<Admin>> getAdmin(){
+        return new ResponseEntity<>(aservice.getAllAdmin(), HttpStatus.OK);
+    }
+
     @DeleteMapping(path="/deleteadmin/{id}")
     public ResponseEntity<?> deleteAdmin(@PathVariable(value = "id") long id){
         return aservice.deleteAdmin(id);

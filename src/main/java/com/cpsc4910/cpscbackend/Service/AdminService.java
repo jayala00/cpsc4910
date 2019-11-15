@@ -35,5 +35,5 @@ public interface AdminService {
 
     Admin getAdmin(String email);
 
-
+    Iterable<Admin> getAllAdmin();
 }

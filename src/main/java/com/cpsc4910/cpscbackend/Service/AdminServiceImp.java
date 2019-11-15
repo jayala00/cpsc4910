@@ -182,4 +182,9 @@ public class AdminServiceImp implements AdminService {
         return adminRepository.findByEmail(email);
     }
 
+
+    public Iterable<Admin> getAllAdmin(){
+        return  adminRepository.findAll();
+    }
+
 }
