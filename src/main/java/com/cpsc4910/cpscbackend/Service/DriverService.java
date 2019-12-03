@@ -28,5 +28,9 @@ public interface DriverService {
 
     Driver getDriver(String email);
 
+    String addPoints(int points, String email);
+
+    String deletePoints(int points, String email);
+
 
 }

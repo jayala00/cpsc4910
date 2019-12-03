@@ -46,6 +46,18 @@ public class DriverController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping(path="/addpoints/{email}")
+    public ResponseEntity<String> addDriverPoints(@PathVariable(value = "email") String email, @Valid @RequestBody Driver request) {
+        String response = dservice.addPoints(request.getPoints(), email);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping(path="/deletepoints/{email}")
+    public ResponseEntity<String> deleteDriverPoints(@PathVariable(value = "email") String email, @Valid @RequestBody Driver request) {
+        String response = dservice.deletePoints(request.getPoints(), email);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @GetMapping(path = "/getdriver/{id}")
     public ResponseEntity<Driver> getDriverById(@PathVariable(value = "id") long id) {
 

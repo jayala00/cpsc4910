@@ -91,6 +91,40 @@ public class DriverServiceImp implements DriverService {
         return "Email Successfully Changed To " + newemail;
     }
 
+    public String addPoints(int points, String email){
+        Driver d = driverRepository.findByEmail(email);
+
+        int oldpoints = d.getPoints();
+
+        int newpoints = oldpoints + points;
+
+        d.setPoints(newpoints);
+
+        driverRepository.save(d);
+
+        return "Points added to " + email + " : " + points;
+
+    }
+
+    public String deletePoints(int points, String email){
+        Driver d = driverRepository.findByEmail(email);
+
+        int oldpoints = d.getPoints();
+
+        int newpoints = oldpoints - points;
+
+        if (newpoints < 0){
+            newpoints = 0;
+        }
+
+        d.setPoints(newpoints);
+
+        driverRepository.save(d);
+
+        return "Points added to " + email + " : " + points;
+
+    }
+
     public String changeAddress(String newaddress, long id){
         Driver d = driverRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Driver", "id", id));

@@ -25,7 +25,7 @@ public class Driver {
 
     private String address;
 
-    private String points;
+    private int points;
 
 
     public Driver() {
@@ -35,11 +35,11 @@ public class Driver {
         return address;
     }
 
-    public String getPoints() {
+    public int getPoints() {
         return points;
     }
 
-    public void setPoints(String points) {
+    public void setPoints(int points) {
         this.points = points;
     }
 
