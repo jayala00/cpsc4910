@@ -105,4 +105,6 @@ public class DriverServiceImp implements DriverService {
     public Driver getDriver(String email){
         return driverRepository.findByEmail(email);
     }
+
+    public Driver getDriverProfile(String email) { return  driverRepository.findByEmail(email); }
 }

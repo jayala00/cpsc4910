@@ -28,5 +28,5 @@ public interface DriverService {
 
     Driver getDriver(String email);
 
-
+    Driver getDriverProfile(String email);
 }

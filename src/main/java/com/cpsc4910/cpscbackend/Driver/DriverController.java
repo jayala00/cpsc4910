@@ -79,6 +79,10 @@ public class DriverController {
         return dservice.deleteDriver(id);
     }
 
+    @GetMapping(path = "/getDriverProfile/{email}")
+    public  ResponseEntity<Driver> getDriverProfile(@PathVariable (value = "email") String email) {
+        return new ResponseEntity<>(dservice.getDriverProfile(email), HttpStatus.OK);
+    }
 
 
 }
