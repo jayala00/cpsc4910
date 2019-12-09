@@ -28,13 +28,10 @@ public interface DriverService {
 
     Driver getDriver(String email);
 
-<<<<<<< HEAD
     Driver getDriverProfile(String email);
-=======
+
     String addPoints(int points, String email);
 
     String deletePoints(int points, String email);
 
-
->>>>>>> 0ac05878f8c23039e8cb19f27cfcdeaa174e828a
 }
