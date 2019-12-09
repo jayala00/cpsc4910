@@ -31,18 +31,50 @@ public class DriverController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/changepassword/{id}")
-    public ResponseEntity<String> changeDriverPassword(@PathVariable(value = "id") long id, @Valid @RequestBody Driver request) {
+    @PostMapping(path = "/changepassword/{email}")
+    public ResponseEntity<String> changeDriverPassword(@PathVariable(value = "email") String email, @Valid @RequestBody Driver request) {
 
-        String response = dservice.changePassword(request.getPassword(), id);
+        String response = dservice.changePassword(request.getPassword(), email);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/changeemail/{id}")
-    public ResponseEntity<String> changeDriverEmail(@PathVariable(value = "id") long id, @Valid @RequestBody Driver request) {
+    @PostMapping(path = "/changeemail/{email}")
+    public ResponseEntity<String> changeDriverEmail(@PathVariable(value = "email") String email, @Valid @RequestBody Driver request) {
 
-        String response = dservice.changeEmail(request.getEmail(), id);
+        String response = dservice.changeEmail(request.getEmail(), email);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/changefirstname/{email}")
+    public ResponseEntity<String> changeDriverFirstname(@PathVariable(value = "email") String email, @Valid @RequestBody Driver request) {
+
+        String response = dservice.changeFirstname(request.getFirstname(), email);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/changelastname/{email}")
+    public ResponseEntity<String> changeDriverLastname(@PathVariable(value = "email") String email, @Valid @RequestBody Driver request) {
+
+        String response = dservice.changeLastname(request.getLastname(), email);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/changeaddress/{email}")
+    public ResponseEntity<String> changeDriverAddress(@PathVariable(value = "email") String email, @Valid @RequestBody Driver request) {
+
+        String response = dservice.changeAddress(request.getAddress(), email);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/changedriverid/{email}")
+    public ResponseEntity<String> changeDriverdriverid(@PathVariable(value = "email") String email, @Valid @RequestBody Driver request) {
+
+        String response = dservice.changeDriverid(request.getDriverID(), email);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

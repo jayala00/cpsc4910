@@ -18,10 +18,9 @@ public class DriverServiceImp implements DriverService {
         this.driverRepository = driverRepository;
     }
 
-    public String changePassword(String newPassword, long id) {
+    public String changePassword(String newPassword, String email) {
 
-        Driver d = driverRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Driver", "id", id));
+        Driver d = driverRepository.findByEmail(email);
 
         d.setPassword(newPassword);
 
@@ -80,15 +79,44 @@ public class DriverServiceImp implements DriverService {
         return d.getEmail();
     }
 
-    public String changeEmail(String newemail, long id){
-        Driver d = driverRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Driver", "id", id));
+    public String changeEmail(String newemail, String email){
+        Driver d = driverRepository.findByEmail(email);
 
         d.setEmail(newemail);
 
         driverRepository.save(d);
 
         return "Email Successfully Changed To " + newemail;
+    }
+
+    public String changeFirstname(String firstname, String email){
+        Driver d = driverRepository.findByEmail(email);
+
+        d.setFirstname(firstname);
+
+        driverRepository.save(d);
+
+        return "Firstname Successfully Changed To " + firstname;
+    }
+
+    public String changeLastname(String lastname, String email){
+        Driver d = driverRepository.findByEmail(email);
+
+        d.setLastname(lastname);
+
+        driverRepository.save(d);
+
+        return "Lastname Successfully Changed To " + lastname;
+    }
+
+    public String changeDriverid(long driverid, String email){
+        Driver d = driverRepository.findByEmail(email);
+
+        d.setDriverID(driverid);
+
+        driverRepository.save(d);
+
+        return "Driverid Successfully Changed To " + driverid;
     }
 
     public String addPoints(int points, String email){
@@ -125,9 +153,8 @@ public class DriverServiceImp implements DriverService {
 
     }
 
-    public String changeAddress(String newaddress, long id){
-        Driver d = driverRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Driver", "id", id));
+    public String changeAddress(String newaddress, String email){
+        Driver d = driverRepository.findByEmail(email);
 
         d.setAddress(newaddress);
 

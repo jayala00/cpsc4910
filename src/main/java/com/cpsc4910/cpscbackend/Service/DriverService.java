@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface DriverService {
 
-    String changePassword(String newPassword, long id);
+    String changePassword(String newPassword, String password);
 
     String addDriver(long driverID, String firstname, String lastname, String email, String address, String password);
 
@@ -22,9 +22,17 @@ public interface DriverService {
 
     String getEmail(long id);
 
-    String changeEmail(String newemail, long id);
+    String changeEmail(String newemail, String email);
 
-    String changeAddress(String newaddress, long id);
+    String changeAddress(String newaddress, String email);
+
+    String changeFirstname(String firstname, String email);
+
+    String changeLastname(String lastname, String email);
+
+    String changeDriverid(long driverid, String email);
+
+
 
     Driver getDriver(String email);
 
@@ -35,4 +43,5 @@ public interface DriverService {
     String deletePoints(int points, String email);
 
     String registerDriver(String firstname, String lastname, String email, String password);
+
 }
