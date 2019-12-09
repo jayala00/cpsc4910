@@ -36,4 +36,6 @@ public interface AdminService {
     Admin getAdmin(String email);
 
     Iterable<Admin> getAllAdmin();
+
+    String registerAdmin(String firstname, String lastname, String email, String password);
 }

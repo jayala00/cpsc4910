@@ -54,4 +54,19 @@ public class SponsorServiceImp implements SponsorService{
     public Iterable<Sponsor> getAllSponsors(){
         return  sponsorRespository.findAll();
     }
+
+    public String registerSponsor (String name, String email, String password) {
+
+        Sponsor s = new Sponsor();
+
+        s.setEmail(email);
+        s.setPassword(password);
+        s.setAddress(null);
+        s.setName(name);
+        s.setSponsorID(0);
+
+        sponsorRespository.save(s);
+
+        return "Sponsor " + name + " has been added!";
+    }
 }

@@ -14,4 +14,6 @@ public interface SponsorService {
     Sponsor getSponsor(String email);
 
     Iterable<Sponsor> getAllSponsors();
+
+    String registerSponsor(String name, String email, String password);
 }

@@ -110,4 +110,11 @@ public class AdminController {
         return aservice.deleteSponsor(id);
     }
 
+    @PostMapping(path="/registeradmin")
+    public ResponseEntity<String> registerNewAdmin(@Valid @RequestBody Admin request) {
+
+        String response = aservice.registerAdmin(request.getFirstname(), request.getLastname(), request.getEmail(), request.getPassword());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

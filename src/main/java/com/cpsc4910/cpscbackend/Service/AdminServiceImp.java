@@ -187,4 +187,18 @@ public class AdminServiceImp implements AdminService {
         return  adminRepository.findAll();
     }
 
+    public String registerAdmin (String firstname, String lastname, String email, String password) {
+
+        Admin a = new Admin();
+
+        a.setEmail(email);
+        a.setFirstname(firstname);
+        a.setLastname(lastname);
+        a.setPassword(password);
+        a.setAdminID(0);
+
+        adminRepository.save(a);
+
+        return "Admin " + firstname + " has been added!";
+    }
 }

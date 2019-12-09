@@ -141,4 +141,21 @@ public class DriverServiceImp implements DriverService {
     }
 
     public Driver getDriverProfile(String email) { return  driverRepository.findByEmail(email); }
+
+    public String registerDriver (String firstname, String lastname, String email, String password) {
+
+        Driver d = new Driver();
+
+        d.setID(0);
+        d.setDriverID(0);
+        d.setFirstname(firstname);
+        d.setLastname(lastname);
+        d.setEmail(email);
+        d.setAddress(null);
+        d.setPassword(password);
+
+        driverRepository.save(d);
+
+        return "Driver " + firstname + " has been added!";
+    }
 }

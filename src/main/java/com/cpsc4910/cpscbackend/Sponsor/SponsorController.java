@@ -51,4 +51,11 @@ public class SponsorController {
         return new ResponseEntity<>(sservice.getAllSponsors(), HttpStatus.OK);
     }
 
+    @PostMapping(path="/registersponsor")
+    public ResponseEntity<String> registerNewSponsor(@Valid @RequestBody Sponsor request) {
+
+        String response = sservice.registerSponsor(request.getName(), request.getEmail(), request.getPassword());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

@@ -5,6 +5,7 @@ import com.cpsc4910.cpscbackend.Service.DriverServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -96,5 +97,12 @@ public class DriverController {
         return new ResponseEntity<>(dservice.getDriverProfile(email), HttpStatus.OK);
     }
 
+    @PostMapping(path="/registerdriver")
+    public ResponseEntity<String> registerNewDriver(@Valid @RequestBody Driver request) {
+
+        String response = dservice.registerDriver(request.getFirstname(), request.getLastname(), request.getEmail(), request.getPassword());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
 }
