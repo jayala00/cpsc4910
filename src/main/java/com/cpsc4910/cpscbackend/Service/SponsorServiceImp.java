@@ -29,20 +29,42 @@ public class SponsorServiceImp implements SponsorService{
         return "Sponsor " + " has been successfully registered";
     }
 
-    public String changePassword(long id, String newpassword){
-        Sponsor s = sponsorRespository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("Sponsor", "id", id));
+    public String changePassword(String email, String newpassword){
+        Sponsor s = sponsorRespository.findByEmail(email);
 
         s.setPassword(newpassword);
         sponsorRespository.save(s);
         return "Password Successfully Changed!";
     }
 
-    public String changeEmail(long id, String newemail){
-        Sponsor s = sponsorRespository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("Sponsor", "id", id));
+    public String changeEmail(String email, String newemail){
+        Sponsor s = sponsorRespository.findByEmail(email);
 
         s.setEmail(newemail);
+        sponsorRespository.save(s);
+        return "Email Successfully Changed";
+    }
+
+    public String changeFirstname(String email, String newname){
+        Sponsor s = sponsorRespository.findByEmail(email);
+
+        s.setName(newname);
+        sponsorRespository.save(s);
+        return "Email Successfully Changed";
+    }
+
+    public String changeID(String email, long id){
+        Sponsor s = sponsorRespository.findByEmail(email);
+
+        s.setSponsorID(id);
+        sponsorRespository.save(s);
+        return "Email Successfully Changed";
+    }
+
+    public String changeAddress(String email, String newaddress){
+        Sponsor s = sponsorRespository.findByEmail(email);
+
+        s.setAddress(newaddress);
         sponsorRespository.save(s);
         return "Email Successfully Changed";
     }

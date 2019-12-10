@@ -31,14 +31,29 @@ public class SponsorController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping(path="/changepassword/{id}")
-    public ResponseEntity<String> changeSponsorPassword(@PathVariable(value="id") long id, @Valid @RequestBody Sponsor request){
-        return new ResponseEntity<>(sservice.changePassword(id, request.getPassword()),HttpStatus.OK);
+    @PostMapping(path="/changepassword/{email}")
+    public ResponseEntity<String> changeSponsorPassword(@PathVariable(value="email") String email, @Valid @RequestBody Sponsor request){
+        return new ResponseEntity<>(sservice.changePassword(email, request.getPassword()),HttpStatus.OK);
     }
 
-    @PostMapping(path="/changeemail/{id}")
-    public ResponseEntity<String> changeSponsorEmail(@PathVariable(value="id")long id, @Valid @RequestBody Sponsor request){
-        return new ResponseEntity<>(sservice.changeEmail(id , request.getEmail()), HttpStatus.OK);
+    @PostMapping(path="/changeemail/{email}")
+    public ResponseEntity<String> changeSponsorEmail(@PathVariable(value="email") String email, @Valid @RequestBody Sponsor request){
+        return new ResponseEntity<>(sservice.changeEmail(email , request.getEmail()), HttpStatus.OK);
+    }
+
+    @PostMapping(path="/changename/{email}")
+    public ResponseEntity<String> changeSponsorName(@PathVariable(value="email") String email, @Valid @RequestBody Sponsor request){
+        return new ResponseEntity<>(sservice.changeFirstname(email , request.getName()), HttpStatus.OK);
+    }
+
+    @PostMapping(path="/changeaddress/{email}")
+    public ResponseEntity<String> changeSponsorAddress(@PathVariable(value="email") String email, @Valid @RequestBody Sponsor request){
+        return new ResponseEntity<>(sservice.changeAddress(email , request.getAddress()), HttpStatus.OK);
+    }
+
+    @PostMapping(path="/changeid/{email}")
+    public ResponseEntity<String> changeSponsorID(@PathVariable(value="email") String email, @Valid @RequestBody Sponsor request){
+        return new ResponseEntity<>(sservice.changeID(email , request.getSponsorID()), HttpStatus.OK);
     }
 
     @GetMapping(path="/getSponsor/{email}")

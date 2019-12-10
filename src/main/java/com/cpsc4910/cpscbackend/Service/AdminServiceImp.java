@@ -7,6 +7,7 @@ import com.cpsc4910.cpscbackend.Driver.DriverRepository;
 import com.cpsc4910.cpscbackend.ResourceNotFoundException;
 import com.cpsc4910.cpscbackend.Sponsor.Sponsor;
 import com.cpsc4910.cpscbackend.Sponsor.SponsorRespository;
+import org.aspectj.apache.bcel.generic.ClassGen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -111,9 +112,8 @@ public class AdminServiceImp implements AdminService {
         return a.getPassword();
     }
 
-    public String changePassword(long id, String newpassword){
-        Admin a = adminRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
+    public String changePassword(String email, String newpassword){
+        Admin a = adminRepository.findByEmail(email);
 
         a.setPassword(newpassword);
 
@@ -122,9 +122,8 @@ public class AdminServiceImp implements AdminService {
         return "Password Successfully Changed";
     }
 
-    public String changeEmail(long id, String newemail){
-        Admin a = adminRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Admin", "id", id));
+    public String changeEmail(String email, String newemail){
+        Admin a = adminRepository.findByEmail(email);
 
         a.setEmail(newemail);
 
@@ -132,6 +131,37 @@ public class AdminServiceImp implements AdminService {
 
         return "Email Successfully Changed";
     }
+
+    public String changeFirst(String email, String firstname){
+        Admin a = adminRepository.findByEmail(email);
+
+        a.setFirstname(firstname);
+
+        adminRepository.save(a);
+
+        return "Email Successfully Changed";
+    }
+
+    public String changeLast(String email, String lastname){
+        Admin a = adminRepository.findByEmail(email);
+
+        a.setLastname(lastname);
+
+        adminRepository.save(a);
+
+        return "Email Successfully Changed";
+    }
+
+    public String changeID(String email, long id){
+        Admin a = adminRepository.findByEmail(email);
+
+        a.setAdminID(id);
+
+        adminRepository.save(a);
+
+        return "Email Successfully Changed";
+    }
+
 
     public String getTotalNumberDrivers(){
         String answer;

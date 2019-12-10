@@ -46,16 +46,34 @@ public class AdminController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/changepassword/{id}")
-    public ResponseEntity<String> changeAdminPassword(@PathVariable(value = "id") long id, @Valid @RequestBody Admin request){
+    @PostMapping(path = "/changepassword/{email}")
+    public ResponseEntity<String> changeAdminPassword(@PathVariable(value = "email") String email, @Valid @RequestBody Admin request){
 
-        return new ResponseEntity<>(aservice.changePassword(id, request.getPassword()), HttpStatus.OK);
+        return new ResponseEntity<>(aservice.changePassword(email, request.getPassword()), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/changeemail/{id}")
-    public ResponseEntity<String> changeAdminEmail(@PathVariable(value = "id") long id, @Valid @RequestBody Admin request){
+    @PostMapping(path = "/changeemail/{email}")
+    public ResponseEntity<String> changeAdminEmail(@PathVariable(value = "email") String email, @Valid @RequestBody Admin request){
 
-        return new ResponseEntity<>(aservice.changeEmail(id, request.getEmail()), HttpStatus.OK);
+        return new ResponseEntity<>(aservice.changeEmail(email, request.getEmail()), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/changefirstname/{email}")
+    public ResponseEntity<String> changeAdminfirstname(@PathVariable(value = "email") String email, @Valid @RequestBody Admin request){
+
+        return new ResponseEntity<>(aservice.changeFirst(email, request.getFirstname()), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/changelastname/{email}")
+    public ResponseEntity<String> changeAdminlastname(@PathVariable(value = "email") String email, @Valid @RequestBody Admin request){
+
+        return new ResponseEntity<>(aservice.changeLast(email, request.getLastname()), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/changeid/{email}")
+    public ResponseEntity<String> changeAdminID(@PathVariable(value = "email") String email, @Valid @RequestBody Admin request){
+
+        return new ResponseEntity<>(aservice.changeID(email, request.getAdminID()), HttpStatus.OK);
     }
 
     @GetMapping(path="/getpassword/{id}")

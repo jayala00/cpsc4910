@@ -7,9 +7,15 @@ import org.springframework.stereotype.Service;
 public interface SponsorService {
     String addSponsor(long id, String name, String address, String password, String email);
 
-    String changePassword(long id, String newpassword);
+    String changePassword(String email, String newpassword);
 
-    String changeEmail(long id, String newemail);
+    String changeEmail(String email, String newemail);
+
+    String changeFirstname(String email, String newname);
+
+    String changeID(String email, long id);
+
+    String changeAddress(String email, String newaddress);
 
     Sponsor getSponsor(String email);
 

@@ -23,9 +23,15 @@ public interface AdminService {
 
     String getPassword(long id);
 
-    String changePassword(long id, String newpassword);
+    String changePassword(String email, String newpassword);
 
-    String changeEmail(long id, String newemail);
+    String changeEmail(String email, String newemail);
+
+    String changeFirst(String email, String firstname);
+
+    String changeLast(String email, String lastname);
+
+    String changeID(String email, long id);
 
     String getTotalNumberDrivers();
 
